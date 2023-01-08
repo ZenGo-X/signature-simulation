@@ -31,7 +31,56 @@ The technical specification should describe the syntax and semantics of any new 
 
 ## Rationale
 
-The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work, e.g. how the feature is supported in other languages.
+EIP-712 already formally binds an off-chain signature to a contract, with the "verifyingContract" parameter. We suggest adding a “view” function ("stateMutability":"view") to such contracts, that returns a human readable description of the meaning of this specific off-chain buffer.
+
+Using this function, wallets can submit the proposed off-chain signature to the contract and present the results to the user, allowing them to enjoy an “on-chain simulation equivalent” experience to their off-chain message.
+
+This function will have a well known name and signature, such that there is no need for updates in the EIP-712 structure.
+
+
+   /**
+
+
+
+
+    * @dev Returns the expected result of the offchain message.
+
+
+    */
+
+
+
+
+   function evalEIP712Buffer(bytes[] memory buffer) public view virtual returns (string memory) {
+
+
+      ...
+
+
+   }
+
+
+
+
+It should be noted, that this proposed solution solves the aforementioned issues, as the responsibility for the description is now owned by the contract, that:
+knows the message meaning exactly (and probably can reuse the code that handles this message when received on chain)
+Natively incentivized to provide the best explanation to prevent a possible fraud
+Not involving a third party that needs to be trusted 
+Maintains the fee-less customer experience as the added function is in “view” mode and does not require an on-chain execution and fees.
+Maintains Web3’s composability property
+### Alternative solutions 
+#### Third party services:
+Currently, the best choice for users is to rely on some 3rd party solutions that get the proposed message as input and explain its intended meaning to the user. This approach is:
+Not scalable: 3rd party provider needs to learn all such proprietary messages
+Not necessarily correct: the explanation is based on 3rd party interpretation of the original message author
+Introduces an unnecessary dependency of a third party which may have some operational, security, and privacy implications.
+
+#### Domain binding
+
+Alternatively, wallets can bind domain to a signature to only accept EIP-712 message if it comes from a web2 domain that is included in the message, however this approach has the following disadvantages:
+It breaks Web3’s composability, as now other dapps cannot interact with such messages
+Does not protect against bad messages coming from the specified web2 domain, e.g. when web2 domain is hacked
+Some current connector, such as walletConnect do not allow wallets to verify the web2 domain authenticity 
 
 ## Backwards Compatibility
 
