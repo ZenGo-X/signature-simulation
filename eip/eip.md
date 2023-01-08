@@ -13,7 +13,10 @@ requires (*optional): 712
 
 ## Abstract
 
-Abstract is a multi-sentence (short paragraph) technical summary. This should be a very terse and human-readable version of the specification section. Someone should be able to read only the abstract to get the gist of what this specification does.
+This is a standard for making a proposed to be signed typed structured data humanly readable. It includes a
+
+* Threat model analysis,
+* Specification for including a function in the verifying contract that returns a humanly readable description of the message to be signed 
 
 ## Motivation
 The use case of Web3 off-chain signatures intended to be used within on-chain transaction is gaining traction and being used in multiple leading protocols (e.g. OpenSea) and standards (EIP-2612: Permit Extension for EIP-20 Signed Approvals), mainly as it offers a fee-less experience.
