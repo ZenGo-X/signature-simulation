@@ -1,13 +1,13 @@
 ---
 eip: <to be assigned>
-title: <The EIP title is a few words, not a complete sentence>
-description: <Description is one full (short) sentence>
-author: <a comma separated list of the author's or authors' name + GitHub username (in parenthesis), or name and email (in angle brackets).  Example, FirstName LastName (@GitHubUsername), FirstName LastName <foo@bar.com>, FirstName (@GitHubUsername) and GitHubUsername (@GitHubUsername)>
+title: Humanly readable offline sginatures
+description: Humanly readable offline sginatures
+author: Tal Be'ery (@talbeerysec), Roi Vazan (@)
 discussions-to: <URL>
 status: Draft
 type: <Standards Track, Meta, or Informational>
 category (*only required for Standards Track): <Core, Networking, Interface, or ERC>
-created: <date created on, in ISO 8601 (yyyy-mm-dd) format>
+created: 2023-01-08
 requires (*optional): <EIP number(s)>
 ---
 
