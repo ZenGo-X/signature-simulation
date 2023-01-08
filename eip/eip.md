@@ -1,21 +1,15 @@
 ---
 eip: <to be assigned>
-title: Humanly readable offline sginatures
-description: Humanly readable offline sginatures
+title: Humanly readable offline signatures
+description: A procedure for making a proposed to be signed buffer of typed structured data humanly readable.
 author: Tal Be'ery (@talbeerysec), Roi Vazan (@)
 discussions-to: <URL>
 status: Draft
-type: <Standards Track, Meta, or Informational>
-category (*only required for Standards Track): <Core, Networking, Interface, or ERC>
+type: Standards Track
+category Interface
 created: 2023-01-08
-requires (*optional): <EIP number(s)>
+requires (*optional): 712
 ---
-
-This is the suggested template for new EIPs.
-
-Note that an EIP number will be assigned by an editor. When opening a pull request to submit your EIP, please use an abbreviated title in the filename, `eip-draft_title_abbrev.md`.
-
-The title should be 44 characters or less. It should not repeat the EIP number in title, irrespective of the category.
 
 ## Abstract
 
@@ -49,7 +43,21 @@ An optional section that contains a reference/example implementation that people
 
 ## Security Considerations
 
-All EIPs must contain a section that discusses the security implications/considerations relevant to the proposed change. Include information that might be important for security discussions, surfaces risks and can be used throughout the life cycle of the proposal. E.g. include security-relevant design decisions, concerns, important discussions, implementation-specific guidance and pitfalls, an outline of threats and risks and how they are being addressed. EIP submissions missing the "Security Considerations" section will be rejected. An EIP cannot proceed to status "Final" without a Security Considerations discussion deemed sufficient by the reviewers.
+###The threat model:
+The attack is facilitated by a rogue web2 interface (“dapp”) that provides bad parameters for an EIP-712 formatted message that is intended to be consumed by a legitimate contract. Therefore, the message is controlled by attackers and cannot be trusted, however the contract is controlled by a legitimate party and can be trusted. 
+
+The attacker intends to use that signed EIP-712 message on-chain later on, with a transaction crafted by the attackers. (if the subsequent on-chain transaction was to be sent by the victim, then a regular transaction simulation would suffice)    
+
+The case of a rogue contract is irrelevant, as such a rogue contract can already facilitate the attack regardless of the existence of the  EIP-712 formatted message.
+
+Having said that, a rogue contract may try to abuse this functionality in order to send some maliciously crafted string in order to exploit vulnerabilities in wallet rendering of the string. Therefore wallets should treat this string as an untrusted input and handle its renderring it as such. 
+
+###Analysis of the proposed solution
+
+The explanation is controlled by the relevant contract which is controlled by a legitimate party. The attacker must specify the relevant contract address, as otherwise it will not be accepted by it. Therefore, the attacker cannot create false explanations using this method.
+Please note that if the explanation was part of the message to sign it would have been under the control of the attacker and hence irrelevant for security purposes. 
+
+Since the added functionality	to the contract has the “view” modifier, it cannot change state and  harm the existing functionalities of the contract#
 
 ## Copyright
 
