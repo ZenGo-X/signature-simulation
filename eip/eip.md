@@ -16,8 +16,12 @@ requires (*optional): 712
 Abstract is a multi-sentence (short paragraph) technical summary. This should be a very terse and human-readable version of the specification section. Someone should be able to read only the abstract to get the gist of what this specification does.
 
 ## Motivation
+The use case of Web3 off-chain signatures intended to be used within on-chain transaction is gaining traction and being used in multiple leading protocols (e.g. OpenSea) and standards (EIP-2612: Permit Extension for EIP-20 Signed Approvals), mainly as it offers a fee-less experience.
+Attackers are known to actively and successfully abuse such off-chain signatures, leveraging the fact that users are blindly signing off-chain messages, since they are not humanly readable. 
+While EIP-712 originally declared in its title that being ”humanly readable” is one of its goals, it did not live up to its promise eventually and EIP-712 messages are not humanly readable by an average user (see example below).
 
-The motivation section should describe the "why" of this EIP. What problem does it solve? Why should someone want to implement this standard? What benefit does it provide to the Ethereum ecosystem? What use cases does this EIP address?
+In this proposal we offer a secure and scalable method to bring true human readability to EIP-712 messages by leveraging their binded smart contracts.
+
 
 ## Specification
 
