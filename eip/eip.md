@@ -65,16 +65,16 @@ Maintains Web3’s composability property
 ### Alternative solutions 
 #### Third party services:
 Currently, the best choice for users is to rely on some 3rd party solutions that get the proposed message as input and explain its intended meaning to the user. This approach is:
-Not scalable: 3rd party provider needs to learn all such proprietary messages
-Not necessarily correct: the explanation is based on 3rd party interpretation of the original message author
-Introduces an unnecessary dependency of a third party which may have some operational, security, and privacy implications.
+* Not scalable: 3rd party provider needs to learn all such proprietary messages
+* Not necessarily correct: the explanation is based on 3rd party interpretation of the original message author
+* ntroduces an unnecessary dependency of a third party which may have some operational, security, and privacy implications.
 
 #### Domain binding
 
 Alternatively, wallets can bind domain to a signature to only accept EIP-712 message if it comes from a web2 domain that is included in the message, however this approach has the following disadvantages:
-It breaks Web3’s composability, as now other dapps cannot interact with such messages
-Does not protect against bad messages coming from the specified web2 domain, e.g. when web2 domain is hacked
-Some current connector, such as walletConnect do not allow wallets to verify the web2 domain authenticity 
+* It breaks Web3’s composability, as now other dapps cannot interact with such messages
+* Does not protect against bad messages coming from the specified web2 domain, e.g. when web2 domain is hacked
+* Some current connector, such as walletConnect do not allow wallets to verify the web2 domain authenticity 
 
 ## Backwards Compatibility
 
