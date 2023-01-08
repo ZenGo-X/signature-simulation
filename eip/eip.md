@@ -31,27 +31,16 @@ Using this function, wallets can submit the proposed off-chain signature to the 
 
 This function will have a well known name and signature, such that there is no need for updates in the EIP-712 structure.
 
-
+```
    /**
-
-
-
-
     * @dev Returns the expected result of the offchain message.
-
-
-    */
-
-
-
+   */
 
    function evalEIP712Buffer(bytes[] memory buffer) public view virtual returns (string memory) {
-
-
       ...
 
-
    }
+```
 
 ## Rationale
 
