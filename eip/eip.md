@@ -43,7 +43,7 @@ An optional section that contains a reference/example implementation that people
 
 ## Security Considerations
 
-###The threat model:
+### The threat model:
 The attack is facilitated by a rogue web2 interface (“dapp”) that provides bad parameters for an EIP-712 formatted message that is intended to be consumed by a legitimate contract. Therefore, the message is controlled by attackers and cannot be trusted, however the contract is controlled by a legitimate party and can be trusted. 
 
 The attacker intends to use that signed EIP-712 message on-chain later on, with a transaction crafted by the attackers. (if the subsequent on-chain transaction was to be sent by the victim, then a regular transaction simulation would suffice)    
@@ -52,7 +52,7 @@ The case of a rogue contract is irrelevant, as such a rogue contract can already
 
 Having said that, a rogue contract may try to abuse this functionality in order to send some maliciously crafted string in order to exploit vulnerabilities in wallet rendering of the string. Therefore wallets should treat this string as an untrusted input and handle its renderring it as such. 
 
-###Analysis of the proposed solution
+### Analysis of the proposed solution
 
 The explanation is controlled by the relevant contract which is controlled by a legitimate party. The attacker must specify the relevant contract address, as otherwise it will not be accepted by it. Therefore, the attacker cannot create false explanations using this method.
 Please note that if the explanation was part of the message to sign it would have been under the control of the attacker and hence irrelevant for security purposes. 
