@@ -57,11 +57,12 @@ This function will have a well known name and signature, such that there is no n
 
 
 The proposed solution solves the readability issues. The incentives for keeping the descritption as accurate as possible are alligned, as the responsibility for the description is now owned by the contract, that:
-knows the message meaning exactly (and probably can reuse the code that handles this message when received on chain)
-Natively incentivized to provide the best explanation to prevent a possible fraud
-Not involving a third party that needs to be trusted 
-Maintains the fee-less customer experience as the added function is in “view” mode and does not require an on-chain execution and fees.
-Maintains Web3’s composability property
+* knows the message meaning exactly (and probably can reuse the code that handles this message when received on chain)
+* Natively incentivized to provide the best explanation to prevent a possible fraud
+* Not involving a third party that needs to be trusted 
+* Maintains the fee-less customer experience as the added function is in “view” mode and does not require an on-chain execution and fees.
+* Maintains Web3’s composability property
+   
 ### Alternative solutions 
 #### Third party services:
 Currently, the best choice for users is to rely on some 3rd party solutions that get the proposed message as input and explain its intended meaning to the user. This approach is:
