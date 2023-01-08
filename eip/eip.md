@@ -25,13 +25,7 @@ In this proposal we offer a secure and scalable method to bring true human reada
 
 ## Specification
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 and RFC 8174.
-
-The technical specification should describe the syntax and semantics of any new feature. The specification should be detailed enough to allow competing, interoperable implementations for any of the current Ethereum platforms (go-ethereum, parity, cpp-ethereum, ethereumj, ethereumjs, and [others](https://ethereum.org/en/developers/docs/nodes-and-clients/)).
-
-## Rationale
-
-EIP-712 already formally binds an off-chain signature to a contract, with the "verifyingContract" parameter. We suggest adding a “view” function ("stateMutability":"view") to such contracts, that returns a human readable description of the meaning of this specific off-chain buffer.
+   EIP-712 already formally binds an off-chain signature to a contract, with the "verifyingContract" parameter. We suggest adding a “view” function ("stateMutability":"view") to such contracts, that returns a human readable description of the meaning of this specific off-chain buffer.
 
 Using this function, wallets can submit the proposed off-chain signature to the contract and present the results to the user, allowing them to enjoy an “on-chain simulation equivalent” experience to their off-chain message.
 
@@ -59,10 +53,10 @@ This function will have a well known name and signature, such that there is no n
 
    }
 
+## Rationale
 
 
-
-It should be noted, that this proposed solution solves the aforementioned issues, as the responsibility for the description is now owned by the contract, that:
+The proposed solution solves the readability issues. The incentives for keeping the descritption as accurate as possible are alligned, as the responsibility for the description is now owned by the contract, that:
 knows the message meaning exactly (and probably can reuse the code that handles this message when received on chain)
 Natively incentivized to provide the best explanation to prevent a possible fraud
 Not involving a third party that needs to be trusted 
