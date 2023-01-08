@@ -6,7 +6,7 @@ author: Tal Be'ery (@talbeerysec), Roi Vazan (@)
 discussions-to: <URL>
 status: Draft
 type: Standards Track
-category Interface
+category: Interface
 created: 2023-01-08
 requires (*optional): 712
 ---
