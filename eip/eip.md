@@ -61,7 +61,7 @@ Having said that, a rogue contract may try to abuse this functionality in order 
 The explanation is controlled by the relevant contract which is controlled by a legitimate party. The attacker must specify the relevant contract address, as otherwise it will not be accepted by it. Therefore, the attacker cannot create false explanations using this method.
 Please note that if the explanation was part of the message to sign it would have been under the control of the attacker and hence irrelevant for security purposes. 
 
-Since the added functionality	to the contract has the “view” modifier, it cannot change state and  harm the existing functionalities of the contract#
+Since the added functionality	to the contract has the “view” modifier, it cannot change state and  harm the existing functionalities of the contract
 
 ## Copyright
 
