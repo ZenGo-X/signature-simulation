@@ -4,6 +4,7 @@ out/
 
 # Ignores development broadcast logs
 boradcast/
+.DS_Store
 
 
 # Dotenv file
