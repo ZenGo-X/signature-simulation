@@ -26,9 +26,8 @@ While [EIP-712](https://eips.ethereum.org/EIPS/eip-712) originally declared in i
 
 The example below shows the user exprience of victims that browse an actual phishing website. The phishing website requests the victims to sign a message that will put their NFT tokens for sale on the OpenSea platform for a price of virtually zero.
  
-<p align="center">
-![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif)   
- </p>
+![phishing website](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif)   
+
  
 As can be observed, the contents of the EIP-712 message to be signed shown to the user by the wallet is not understanable.
 
