@@ -24,7 +24,7 @@ The use case of Web3 off-chain signatures intended to be used within on-chain tr
 Attackers are known to actively and successfully abuse such off-chain signatures, leveraging the fact that users are blindly signing off-chain messages, since they are not humanly readable.
 While [EIP-712](https://eips.ethereum.org/EIPS/eip-712) originally declared in its title that being ”humanly readable” is one of its goals, it did not live up to its promise eventually and EIP-712 messages are not understandable by an average user.
 
-The example below shows the user exprience of victims that browse an actual phishing website. The phishing website requests the victims to sign a message that will put their NFT tokens for sale on the OpenSea platform for a price of virtually zero.
+The example below shows the user exprience of victims that browse an actual phishing website. The phishing website requests the victims to sign a message that will put their NFT tokens up for sale on the OpenSea platform for virtually zero price.
  
 ![phishing website](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif)   
 
