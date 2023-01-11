@@ -21,7 +21,9 @@ This is a standard for making a proposed to be signed typed structured data huma
 ## Motivation
 The use case of Web3 off-chain signatures intended to be used within on-chain transaction is gaining traction and being used in multiple leading protocols (e.g. OpenSea) and standards [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612), mainly as it offers a fee-less experience.
 Attackers are known to actively and successfully abuse such off-chain signatures, leveraging the fact that users are blindly signing off-chain messages, since they are not humanly readable. 
-While EIP-712 originally declared in its title that being ”humanly readable” is one of its goals, it did not live up to its promise eventually and EIP-712 messages are not humanly readable by an average user (see example below).
+While [EIP-712](https://eips.ethereum.org/EIPS/eip-712) originally declared in its title that being ”humanly readable” is one of its goals, it did not live up to its promise eventually and EIP-712 messages are not understandable by an average user (see example below).
+
+![]([https://github.com/Your_Repository_Name/Your_GIF_Name.gif](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif))
 
 In this proposal we offer a secure and scalable method to bring true human readability to EIP-712 messages by leveraging their binded smart contracts.
 
@@ -84,8 +86,7 @@ Test cases for an implementation are mandatory for EIPs that are affecting conse
 
 ## Reference Implementation
 
-A reference/example implementation that people can use to assist in understanding or implementing this specification.  If the implementation is too large to reasonably be included inline, then consider adding it as one or more files in `../assets/eip-####/`.
-
+A reference/example implementation can be found [here[(https://github.com/ZenGo-X/signature-simulation/tree/main/implementation)
 ## Security Considerations
 
 ### The threat model:
