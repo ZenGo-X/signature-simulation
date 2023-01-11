@@ -15,8 +15,8 @@ requires (*optional): 712
 
 This is a standard for making a proposed to be signed typed structured data humanly readable. It includes a
 
-- Threat model analysis,
-- Specification for including a function in the verifying contract that returns a humanly readable description of the message to be signed
+- Specification for including a function in the verifying contract that returns a humanly readable description of the message to be signed,
+- Security and threat model analysis of the proposed solution
 
 ## Motivation
 
@@ -29,7 +29,7 @@ The example below shows the user exprience of victims that browse an actual phis
 ![phishing website](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif)   
 
  
-As can be observed, the contents of the EIP-712 message to be signed shown to the user by the wallet is not understanable.
+As can be observed, the content of the EIP-712 message to be signed shown to the user by the wallet is very techincal and not understanable by an avergae user.
 
 In this proposal we offer a secure and scalable method to solve this issue and bring true human readability to EIP-712 messages by leveraging their binded smart contracts.
 
