@@ -24,15 +24,15 @@ The use case of Web3 off-chain signatures intended to be used within on-chain tr
 Attackers are known to actively and successfully abuse such off-chain signatures, leveraging the fact that users are blindly signing off-chain messages, since they are not humanly readable.
 While [EIP-712](https://eips.ethereum.org/EIPS/eip-712) originally declared in its title that being ”humanly readable” is one of its goals, it did not live up to its promise eventually and EIP-712 messages are not understandable by an average user.
 
-The example below shows the user exprience of victims that browse an actual phishing website. The phishing website requests the victims to sign a message that will put their NFT token for sale on OpenSea platform for a virtually zero price.
+The example below shows the user exprience of victims that browse an actual phishing website. The phishing website requests the victims to sign a message that will put their NFT tokens for sale on the OpenSea platform for a price of virtually zero.
  
 <p align="center">
-
-![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif)
-   
+![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif)   
  </p>
+ 
+As can be observed, the contents of the EIP-712 message to be signed shown to the user by the wallet is not understanable.
 
-In this proposal we offer a secure and scalable method to bring true human readability to EIP-712 messages by leveraging their binded smart contracts.
+In this proposal we offer a secure and scalable method to solve this issue and bring true human readability to EIP-712 messages by leveraging their binded smart contracts.
 
 ## Specification
 
@@ -58,6 +58,10 @@ This function will have a well known name and signature, such that there is no n
 ```
 
 (Some suggested alternatives for the function name, such as "explainSignedMessage". We want to get the community feedback on the proper name)
+ 
+In case the EIP-712 message is not binded to a contract, the wallet cannot call this function as the contract address is unkown and SHOULD default to its current display.
+
+( A question for the community: do we want to allow that in case the EIP-712 message wants to specify that it will not be used on chain (e.g. the message is used for login to dapp only), it can specify a pre-determined non-existing contract address, e.g. 0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC, so the wallet can safely indicate this message will only be used offline? what are the risks? Can attacker use a signature binded to this non-existing address and use it against contracts that are not validating the contract address?)
 
 ## Rationale
 
@@ -110,7 +114,7 @@ The attacker intends to use that signed EIP-712 message on-chain later on, with 
 
 The case of a rogue contract is irrelevant, as such a rogue contract can already facilitate the attack regardless of the existence of the EIP-712 formatted message.
 
-Having said that, a rogue contract may try to abuse this functionality in order to send some maliciously crafted string in order to exploit vulnerabilities in wallet rendering of the string. Therefore wallets should treat this string as an untrusted input and handle its renderring it as such.
+Having said that, a rogue contract may try to abuse this functionality in order to send some maliciously crafted string in order to exploit vulnerabilities in wallet rendering of the string. Therefore wallets should treat this string as an untrusted input and handle its rendering as such. 
 
 ### Analysis of the proposed solution
 
