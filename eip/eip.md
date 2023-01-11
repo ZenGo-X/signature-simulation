@@ -19,7 +19,7 @@ This is a standard for making a proposed to be signed typed structured data huma
 * Specification for including a function in the verifying contract that returns a humanly readable description of the message to be signed 
 
 ## Motivation
-The use case of Web3 off-chain signatures intended to be used within on-chain transaction is gaining traction and being used in multiple leading protocols (e.g. OpenSea) and standards (EIP-2612: Permit Extension for EIP-20 Signed Approvals), mainly as it offers a fee-less experience.
+The use case of Web3 off-chain signatures intended to be used within on-chain transaction is gaining traction and being used in multiple leading protocols (e.g. OpenSea) and standards [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612), mainly as it offers a fee-less experience.
 Attackers are known to actively and successfully abuse such off-chain signatures, leveraging the fact that users are blindly signing off-chain messages, since they are not humanly readable. 
 While EIP-712 originally declared in its title that being ”humanly readable” is one of its goals, it did not live up to its promise eventually and EIP-712 messages are not humanly readable by an average user (see example below).
 
@@ -28,7 +28,11 @@ In this proposal we offer a secure and scalable method to bring true human reada
 
 ## Specification
 
-   EIP-712 already formally binds an off-chain signature to a contract, with the "verifyingContract" parameter. We suggest adding a “view” function ("stateMutability":"view") to such contracts, that returns a human readable description of the meaning of this specific off-chain buffer.
+The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in RFC 2119.
+
+EIP-712 already formally binds an off-chain signature to a contract, with the "verifyingContract" parameter. We suggest adding a “view” function ("stateMutability":"view") to such contracts, that returns a human readable description of the meaning of this specific off-chain buffer.
+
+**Every EIP-XXXX (this EIP) compliant contract MUST implement this function**
 
 Using this function, wallets can submit the proposed off-chain signature to the contract and present the results to the user, allowing them to enjoy an “on-chain simulation equivalent” experience to their off-chain message.
 
@@ -71,7 +75,8 @@ Alternatively, wallets can bind domain to a signature to only accept EIP-712 mes
 
 ## Backwards Compatibility
 
-for non-supporting contracts the wallets will default to showing whatever they are showing today
+For non-supporting contracts the wallets will default to showing whatever they are showing today.
+Non-supporting wallets will not call this function and will default to showing whatever they are showing today.
    
 ## Test Cases
 
@@ -79,7 +84,7 @@ Test cases for an implementation are mandatory for EIPs that are affecting conse
 
 ## Reference Implementation
 
-An optional section that contains a reference/example implementation that people can use to assist in understanding or implementing this specification.  If the implementation is too large to reasonably be included inline, then consider adding it as one or more files in `../assets/eip-####/`.
+A reference/example implementation that people can use to assist in understanding or implementing this specification.  If the implementation is too large to reasonably be included inline, then consider adding it as one or more files in `../assets/eip-####/`.
 
 ## Security Considerations
 
@@ -88,7 +93,7 @@ The attack is facilitated by a rogue web2 interface (“dapp”) that provides b
 
 The attacker intends to use that signed EIP-712 message on-chain later on, with a transaction crafted by the attackers. (if the subsequent on-chain transaction was to be sent by the victim, then a regular transaction simulation would suffice)    
 
-The case of a rogue contract is irrelevant, as such a rogue contract can already facilitate the attack regardless of the existence of the  EIP-712 formatted message.
+The case of a rogue contract is irrelevant, as such a rogue contract can already facilitate the attack regardless of the existence of the EIP-712 formatted message.
 
 Having said that, a rogue contract may try to abuse this functionality in order to send some maliciously crafted string in order to exploit vulnerabilities in wallet rendering of the string. Therefore wallets should treat this string as an untrusted input and handle its renderring it as such. 
 
@@ -97,8 +102,8 @@ Having said that, a rogue contract may try to abuse this functionality in order 
 The explanation is controlled by the relevant contract which is controlled by a legitimate party. The attacker must specify the relevant contract address, as otherwise it will not be accepted by it. Therefore, the attacker cannot create false explanations using this method.
 Please note that if the explanation was part of the message to sign it would have been under the control of the attacker and hence irrelevant for security purposes. 
 
-Since the added functionality	to the contract has the “view” modifier, it cannot change state and  harm the existing functionalities of the contract
-
+Since the added functionality	to the contract has the “view” modifier, it cannot change state and harm the existing functionalities of the contract
+   
 ## Copyright
 
 Copyright and related rights waived via [CC0](../LICENSE.md).
