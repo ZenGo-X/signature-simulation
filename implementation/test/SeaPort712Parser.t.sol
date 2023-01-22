@@ -15,10 +15,10 @@ contract SeaPort712ParserTest is Test, OrderGenerator {
         seaPortMock = new SeaPortMock(address(seaPort712Parser));
     }
 
-    function testEvalEIP712Buffer() public  {
+    function testEvalEIP712Buffer() view public  {
         OrderComponents memory order = generateOrder();
         string[] memory translatedSig = seaPortMock.translateSig(order);
-        for (uint i = 0; i < translatedSig.length; i++) {
+        for (uint256 i = 0; i < translatedSig.length; i++) {
             console.log(translatedSig[i]);
         }
     }

@@ -2,12 +2,11 @@
 pragma solidity ^0.8.17;
 
 import "src/IEvalEIP712Buffer.sol";
-import {ItemType, OrderType, OfferItem, ConsiderationItem, OrderComponents } from "src/SeaPortStructs.sol";
+import {ItemType, OrderType, OfferItem, ConsiderationItem, OrderComponents} from "src/SeaPortStructs.sol";
 
 contract SeaPort712Parser is IEvalEIP712Buffer {
     string sigMessage =
         "This is a Seaport listing message, mostly used by OpenSea Dapp, be aware of the potential balance changes";
-
 
     struct BalanceOut {
         uint256 amount;
@@ -86,7 +85,6 @@ contract SeaPort712Parser is IEvalEIP712Buffer {
                 outTokenAddresses[outLength] = order.offer[i].token;
                 tempBalanceOut[outLength] = BalanceOut(order.offer[i].startAmount, order.offer[i].token);
                 outLength++;
-                
             }
         }
 
@@ -124,7 +122,7 @@ contract SeaPort712Parser is IEvalEIP712Buffer {
                 abi.encodePacked(
                     "You will send ",
                     toString(tempBalanceOut[i].amount),
-                    " of " ,
+                    " of ",
                     getTokenNameByAddress(tempBalanceOut[i].token)
                 )
             );

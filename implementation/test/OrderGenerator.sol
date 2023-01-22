@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-import {ItemType, OrderType, OfferItem, ConsiderationItem, OrderComponents } from "src/SeaPortStructs.sol";
+import {ItemType, OrderType, OfferItem, ConsiderationItem, OrderComponents} from "src/SeaPortStructs.sol";
 
 contract OrderGenerator {
     function generateOrder() public view returns (OrderComponents memory) {
