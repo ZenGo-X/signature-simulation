@@ -8,7 +8,7 @@ status: Draft
 type: Standards Track
 category: Interface
 created: 2023-01-08
-requires (*optional): 712
+requires: 712
 ---
 
 ## Abstract
