@@ -2,7 +2,7 @@
 pragma solidity ^0.8.17;
 
 import "src/IEvalEIP712Buffer.sol";
-import {ItemType, OrderType, OfferItem, ConsiderationItem, OrderComponents} from "src/SeaPortStructs.sol";
+import {ItemType, OrderType, OfferItem, ConsiderationItem, OrderComponents} from "src/SeaPort/SeaPortStructs.sol";
 
 contract SeaPort712Parser is IEvalEIP712Buffer {
     string sigMessage =

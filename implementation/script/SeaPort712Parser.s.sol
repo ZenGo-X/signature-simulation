@@ -2,8 +2,8 @@
 pragma solidity ^0.8.17;
 
 import "forge-std/Script.sol";
-import "src/SeaPort712Parser.sol";
-import {SeaPortMock} from "src/SeaPortMock.sol";
+import "src/SeaPort/SeaPort712Parser.sol";
+import {SeaPortMock} from "src/SeaPort/SeaPortMock.sol";
 
 contract SeaPort712ParserScript is Script {
     SeaPortMock seaPortMock;

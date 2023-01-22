@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-import "src/SeaPort712Parser.sol";
-import "src/SeaPortMock.sol";
+import "src/SeaPort/SeaPort712Parser.sol";
+import "src/SeaPort/SeaPortMock.sol";
 import "test/OrderGenerator.sol";
 import "forge-std/Test.sol";
 
