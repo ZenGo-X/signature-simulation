@@ -2,7 +2,7 @@
 pragma solidity ^0.8.17;
 
 import "src/IEvalEIP712Buffer.sol";
-import {ItemType, OrderType, OfferItem, ConsiderationItem, OrderComponents } from "src/SeaPortStructs.sol";
+import {ItemType, OrderType, OfferItem, ConsiderationItem, OrderComponents} from "src/SeaPortStructs.sol";
 
 contract SeaPortMock {
     address public immutable eip712TransalatorContract;

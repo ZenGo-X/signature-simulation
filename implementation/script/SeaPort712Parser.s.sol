@@ -15,6 +15,4 @@ contract SeaPort712ParserScript is Script {
         seaPortMock = new SeaPortMock(address(seaPort712Parser));
         vm.stopBroadcast();
     }
-        
 }
-    

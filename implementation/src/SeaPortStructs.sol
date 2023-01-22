@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-
 enum ItemType
+// 0: ETH on mainnet, MATIC on polygon, etc.
 {
-    // 0: ETH on mainnet, MATIC on polygon, etc.
     NATIVE,
     // 1: ERC20 items (ERC777 and ERC20 analogues could also technically work)
     ERC20,
@@ -19,8 +18,8 @@ enum ItemType
 }
 
 enum OrderType
+// 0: no partial fills, anyone can execute
 {
-    // 0: no partial fills, anyone can execute
     FULL_OPEN,
     // 1: partial fills supported, anyone can execute
     PARTIAL_OPEN,

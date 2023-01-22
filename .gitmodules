@@ -2,6 +2,9 @@
 	path = lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
 	branch = v4.8.1
-[submodule "implementation/lib/openzeppelin-contracts"]
-	path = implementation/lib/openzeppelin-contracts
+[submodule "implementation-seaport/lib/openzeppelin-contracts"]
+	path = implementation-seaport/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "implementation-token/lib/forge-std"]
+	path = implementation-token/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
