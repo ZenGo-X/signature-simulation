@@ -88,13 +88,12 @@ Alternatively, wallets can bind domain to a signature to only accept EIP-712 mes
 For non-supporting contracts the wallets will default to showing whatever they are showing today.
 Non-supporting wallets will not call this function and will default to showing whatever they are showing today.
 
-## Test Cases
-
-Test cases for an implementation are mandatory for EIPs that are affecting consensus changes. If the test suite is too large to reasonably be included inline, then consider adding it as one or more files in `../assets/eip-####/`.
 
 ## Reference Implementation
 
-A reference/example implementation can be found [here](https://github.com/ZenGo-X/signature-simulation/tree/main/implementation)
+A reference implementation can be found [here](https://github.com/ZenGo-X/signature-simulation/blob/main/implementation/src/MyToken/MyToken.sol)
+This toy example shows how an ERC20 contract supporting this EIP implements an EIP-712 support for "transferWithSig" functionality (a non-standard variation on Permit, as the point of this EIP is to allow readability to non-standard EIP-717 buffers)
+To illustrate the usability of this EIP to some real world use case, a helper function for the actual OpenSea's SeaPort EIP-712 is implemented too in [here](https://github.com/ZenGo-X/signature-simulation/blob/main/implementation/src/SeaPort/SeaPort712Parser.sol)
 
 ## Security Considerations
 
