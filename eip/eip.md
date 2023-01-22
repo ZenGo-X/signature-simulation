@@ -26,7 +26,7 @@ While [EIP-712](https://eips.ethereum.org/EIPS/eip-712) originally declared in i
 
 The example below shows the user exprience of victims that browse an actual phishing website. The phishing website requests the victims to sign a message that will put their NFT token for sale on OpenSea platform for a virtually zero price.
 
-![](<[https://github.com/Your_Repository_Name/Your_GIF_Name.gif](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif)>)
+![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif)
 
 In this proposal we offer a secure and scalable method to bring true human readability to EIP-712 messages by leveraging their binded smart contracts.
 
