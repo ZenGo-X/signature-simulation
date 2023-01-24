@@ -31,7 +31,8 @@ The example below shows the user exprience of victims that browse an actual phis
 As this example shows, the user interface for some popular wallet implementations is not coveying the actual meaning of signing such transactions.
 
 In this proposal we offer a secure and scalable method to bring true human readability to EIP-712 messages by leveraging their binded smart contracts. As a result after implementing this EIP, wallets can upgrade their user experience from current state (depicted on the left hand side) to a much clearer user experience.
-![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif)
+   
+![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/Offline%20signature%20EIP%20before%20and%20after.png)
    
 
 
