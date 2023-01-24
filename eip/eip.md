@@ -15,8 +15,8 @@ requires: 712
 
 This is a standard for making a proposed to be signed typed structured data humanly readable. It includes a
 
-- Threat model analysis,
-- Specification for including a function in the verifying contract that returns a humanly readable description of the message to be signed
+- Specification for including a function in the verifying contract that returns a humanly readable description of the message to be signed,
+- Security analysis of the proposed solution
 
 ## Motivation
 
@@ -24,11 +24,16 @@ The use case of Web3 off-chain signatures intended to be used within on-chain tr
 Attackers are known to actively and successfully abuse such off-chain signatures, leveraging the fact that users are blindly signing off-chain messages, since they are not humanly readable.
 While [EIP-712](https://eips.ethereum.org/EIPS/eip-712) originally declared in its title that being ”humanly readable” is one of its goals, it did not live up to its promise eventually and EIP-712 messages are not understandable by an average user.
 
-The example below shows the user exprience of victims that browse an actual phishing website. The phishing website requests the victims to sign a message that will put their NFT token for sale on OpenSea platform for a virtually zero price.
+The example below shows the user exprience of victims that browse an actual phishing website. The phishing website requests the victims to sign a message that will put their NFT token for sale on OpenSea platform for a virtually zero price. 
 
 ![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif)
 
-In this proposal we offer a secure and scalable method to bring true human readability to EIP-712 messages by leveraging their binded smart contracts.
+As this example shows, the user interface for some popular wallet implementations is not coveying the actual meaning of signing such transactions.
+
+In this proposal we offer a secure and scalable method to bring true human readability to EIP-712 messages by leveraging their binded smart contracts. As a result after implementing this EIP, wallets can upgrade their user experience from current state (depicted on the left hand side) to a much clearer user experience.
+![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif)
+   
+
 
 ## Specification
 
