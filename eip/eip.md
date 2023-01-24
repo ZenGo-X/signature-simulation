@@ -53,7 +53,7 @@ This function will have a well known name and signature, such that there is no n
     * @dev Returns the expected result of the offchain message.
    */
 
-   function evalEIP712Buffer(bytes[] memory buffer) public view virtual returns (string memory) {
+    function evalEIP712Buffer(bytes memory encodedSignature) public view returns (string[] memory) {
       ...
 
    }
