@@ -3,6 +3,7 @@ pragma solidity ^0.8.17;
 
 import "src/IEvalEIP712Buffer.sol";
 import {ItemType, OrderType, OfferItem, ConsiderationItem, OrderComponents} from "src/SeaPort/SeaPortStructs.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract SeaPort712Parser is IEvalEIP712Buffer {
     string sigMessage =
@@ -16,25 +17,6 @@ contract SeaPort712Parser is IEvalEIP712Buffer {
     struct BalanceIn {
         uint256 amount;
         address token;
-    }
-
-    function toString(uint256 value) internal pure returns (string memory str) {
-        assembly {
-            let m := add(mload(0x40), 0xa0)
-            mstore(0x40, m)
-            str := sub(m, 0x20)
-            mstore(str, 0)
-            let end := str
-            for { let temp := value } 1 {} {
-                str := sub(str, 1)
-                mstore8(str, add(48, mod(temp, 10)))
-                temp := div(temp, 10)
-                if iszero(temp) { break }
-            }
-            let length := sub(end, str)
-            str := sub(str, 0x20)
-            mstore(str, length)
-        }
     }
 
     function getTokenNameByAddress(address _token) private view returns (string memory) {
@@ -105,12 +87,12 @@ contract SeaPort712Parser is IEvalEIP712Buffer {
 
         sigTranslatedMessage = new string[](outLength + inLength + 2);
         sigTranslatedMessage[0] = sigMessage;
-        sigTranslatedMessage[1] = string(abi.encodePacked("The signature is valid until ", toString(order.endTime)));
+        sigTranslatedMessage[1] = string(abi.encodePacked("The signature is valid until ", Strings.toString(order.endTime)));
         for (uint256 i; i < inLength; i++) {
             sigTranslatedMessage[i + 2] = string(
                 abi.encodePacked(
                     "You will receive ",
-                    toString(tempBalanceIn[i].amount),
+                    Strings.toString(tempBalanceIn[i].amount),
                     " of ",
                     getTokenNameByAddress(tempBalanceIn[i].token)
                 )
@@ -121,7 +103,7 @@ contract SeaPort712Parser is IEvalEIP712Buffer {
             sigTranslatedMessage[i + inLength + 2] = string(
                 abi.encodePacked(
                     "You will send ",
-                    toString(tempBalanceOut[i].amount),
+                    Strings.toString(tempBalanceOut[i].amount),
                     " of ",
                     getTokenNameByAddress(tempBalanceOut[i].token)
                 )

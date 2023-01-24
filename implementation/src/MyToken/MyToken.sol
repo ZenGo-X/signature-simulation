@@ -43,8 +43,7 @@ contract MyToken is ERC20, EIP712 {
         return _domainSeparatorV4();
     }
 
-    function translateSig(TransferParameters memory _transferSig) public view returns (string[] memory) {
-        bytes memory encodedTransfer = abi.encode(_transferSig);
-        return IEvalEIP712Buffer(eip712TransalatorContract).evalEIP712Buffer(encodedTransfer);
+    function evalEIP712Buffer(bytes memory encodedSignature) public view returns (string[] memory) {
+        return IEvalEIP712Buffer(eip712TransalatorContract).evalEIP712Buffer(encodedSignature);
     }
 }

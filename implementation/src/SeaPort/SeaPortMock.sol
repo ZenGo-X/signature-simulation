@@ -13,8 +13,7 @@ contract SeaPortMock {
 
     // SeaPort logic
 
-    function translateSig(OrderComponents memory order) public view returns (string[] memory) {
-        bytes memory encodedOrder = abi.encode(order);
-        return IEvalEIP712Buffer(eip712TransalatorContract).evalEIP712Buffer(encodedOrder);
+    function evalEIP712Buffer(bytes memory encodedSignature) public view returns (string[] memory) {
+        return IEvalEIP712Buffer(eip712TransalatorContract).evalEIP712Buffer(encodedSignature);
     }
 }

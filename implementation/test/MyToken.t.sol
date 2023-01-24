@@ -48,7 +48,8 @@ contract MyTokenTest is Test {
     function testEvalEIP712Buffer() view public {
         //SigUtils.Transfer memory transferPayload = generateSigPayload();
         TransferParameters memory transferPayload = generateSigPayload();
-        string[] memory translatedSig = myToken.translateSig(transferPayload);
+        bytes memory encodedTransfer = abi.encode(transferPayload);
+        string[] memory translatedSig = myToken.evalEIP712Buffer(encodedTransfer);
         for (uint256 i = 0; i < translatedSig.length; i++) {
             console.log(translatedSig[i]);
         }
