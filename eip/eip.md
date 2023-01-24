@@ -79,7 +79,7 @@ Currently, the best choice for users is to rely on some 3rd party solutions that
 
 - Not scalable: 3rd party provider needs to learn all such proprietary messages
 - Not necessarily correct: the explanation is based on 3rd party interpretation of the original message author
-- ntroduces an unnecessary dependency of a third party which may have some operational, security, and privacy implications.
+- Introduces an unnecessary dependency of a third party which may have some operational, security, and privacy implications.
 
 #### Domain binding
 
