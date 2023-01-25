@@ -60,11 +60,11 @@ This function will have a well known name and signature, such that there is no n
 ```
    
 (Some suggested alternatives for the function name, such as "explainSignedMessage". We want to get the community feedback on the proper name)
-###function input(s)
+### Function's input(s)
    
 The input of the function (contents of ```encodedSignature```) is an ABI encoded message part of the EIP-712 full message. As it might be useful for this function to have access to other parts of message, such as primaryType, domain, we want to get the feedback of the community and specifically smart contract implementors on how they would like to receive it: e.g. as seperate parameters or even as the fully ABI encoded message that includes all EIP-712 elements (such as types)
    
-###function output(s)
+### Function's output(s)
 
 The output of the the function is an array of strings. The wallet SHOULD display them to its end-users. The wallet MAY choose to augment the returned strings with additional data. (e.g. resolve contract addresses to their name)
 The strings SHOULD NOT be formatted (e.g. should not contain HTML code) and wallets SHOULD treat this string as an untrusted input and handle its rendering as such.
