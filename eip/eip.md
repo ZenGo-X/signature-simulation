@@ -42,7 +42,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 EIP-712 already formally binds an off-chain signature to a contract, with the "verifyingContract" parameter. We suggest adding a “view” function ("stateMutability":"view") to such contracts, that returns a human readable description of the meaning of this specific off-chain buffer.
 
-**Every EIP-XXXX (this EIP) compliant contract MUST implement this function**
+**Every EIP-XXXX (this EIP) compliant contract MUST implement this function.** In case the EIP-712 message is not bounded to a contract, the wallet cannot call this function as the contract address is unkown and SHOULD default to its current display.
 
 Using this function, wallets can submit the proposed off-chain signature to the contract and present the results to the user, allowing them to enjoy an “on-chain simulation equivalent” experience to their off-chain message.
 
@@ -58,8 +58,19 @@ This function will have a well known name and signature, such that there is no n
 
    }
 ```
-
+   
 (Some suggested alternatives for the function name, such as "explainSignedMessage". We want to get the community feedback on the proper name)
+###function input(s)
+   
+The input of the function (contents of ```encodedSignature```) is an ABI encoded message part of the EIP-712 full message. As it might be useful for this function to have access to other parts of message, such as primaryType, domain, we want to get the feedback of the community and specifically smart contract implementors on how they would like to receive it: e.g. as seperate parameters or even as the fully ABI encoded message that includes all EIP-712 elements (such as types)
+   
+###function output(s)
+
+The output of the the function is an array of strings. The wallet SHOULD display them to its end-users. The wallet MAY choose to augment the returned strings with additional data. (e.g. resolve contract addresses to their name)
+The strings SHOULD NOT be formatted (e.g. should not contain HTML code) and wallets SHOULD treat this string as an untrusted input and handle its rendering as such.
+As it might be useful to provide a more structured output, we want to get the feedback of the community and specifically smart contract implementors on how they would like to receive it. One suggestion is that function would return structs that represent transfers and approvals to support a simulation like experience to the users. e.g. the ```evalEIP712Buffer``` function would return a strcut that represnts a transfer (contract, from, to, amount) and the wallet MAY display a resolved version of it to the end user. ("transfer 2 USDC to address 0x...")
+
+   
 
 ## Rationale
 
