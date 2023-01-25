@@ -59,7 +59,7 @@ This function will have a well known name and signature, such that there is no n
    }
 ```
 
-(Some suggested alternatuves for the function name, such as "explainSignedMessage". We want to get the community feedback on the proper name)
+(Some suggested alternatives for the function name, such as "explainSignedMessage". We want to get the community feedback on the proper name)
 
 ## Rationale
 
