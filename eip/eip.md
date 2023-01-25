@@ -62,7 +62,7 @@ This function will have a well known name and signature, such that there is no n
 (Some suggested alternatives for the function name, such as "explainSignedMessage". We want to get the community feedback on the proper name)
 ### Function's input(s)
    
-The input of the function (contents of ```encodedSignature```) is an ABI encoded message part of the EIP-712 full message. As it might be useful for this function to have access to other parts of message, such as primaryType, domain, we want to get the feedback of the community and specifically smart contract implementors on how they would like to receive it: e.g. as seperate parameters or even as the fully ABI encoded message that includes all EIP-712 elements (such as types)
+The input of the function (contents of ```encodedSignature```) is an ABI encoded message part of the EIP-712 full message. As it might be useful for this function to have access to other parts of message, such as primaryType, domain, we want to get the feedback of the community and specifically smart contract implementors on how they would like to receive it: e.g. as seperate parameters or even as the fully ABI encoded message that includes all EIP-712 elements (such as ```types```)
    
 ### Function's output(s)
 
