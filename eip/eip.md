@@ -62,7 +62,7 @@ This function will have a well known name and signature, such that there is no n
 (Some suggested alternatives for the function name, such as "explainSignedMessage". We want to get the community feedback on the proper name)
 ### Function's input(s)
    
-The input of the function (contents of ```encodedSignature```) is an ABI encoded message part of the EIP-712 full message. As it might be useful for this function to have access to other parts of message, such as primaryType, domain, we want to get the feedback of the community and specifically smart contract implementors on how they would like to receive it: e.g. as seperate parameters or even as the fully ABI encoded message that includes all EIP-712 elements (such as ```types```)
+The input of the function (contents of ```encodedSignature```) is an ABI encoded message part of the EIP-712 full message. As it might be useful for this function to have access to other parts of message, such as ```primaryType```, ```domain```, we want to get the feedback of the community and specifically smart contract implementors on how they would like to receive it: e.g. as seperate parameters or even as the fully ABI encoded message that includes all EIP-712 elements (such as ```types```)
    
 ### Function's output(s)
 
@@ -73,7 +73,7 @@ The strings SHOULD NOT be formatted (e.g. should not contain HTML code) and wall
 As it might be useful to provide a more structured output, we want to get the feedback of the community and specifically wallets' implementors on how they would like to receive it. One suggestion is that function would return structs that represent transfers and approvals to support a simulation like experience to the users. e.g. the ```evalEIP712Buffer``` function would return a strcut that represnts a transfer (contract, from, to, amount) and the wallet MAY display a resolved version of it to the end user. ("transfer 2 USDC to address 0x...")
    
    
-### Support for EIP-712 message that are not meant to be used on-chain
+### Support for EIP-712 messageד that are not meant to be used on-chain
 
 Some web2 implementations are using a signed EIP-712 message as a method to identify the user. It would be helpful if the wallet can display a reassuring message that this message cannot be used on-chain. 
 We would like to get feedback from the community if this can be done safely, e.g. by omitting the ```chainId``` and/or ```verifyingContract``` from EIP-712 message, or putting non-exisiting values in them (e.g. ``verifyingContract``` = 0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC)
