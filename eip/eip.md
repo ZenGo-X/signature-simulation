@@ -13,9 +13,10 @@ requires: 712
 
 ## Abstract
 
-This is a standard for making a proposed to be signed typed structured data humanly readable. It includes a
+This is a standard for making a proposed to be signed typed structured data humanly readable. It includes 
 
 - Specification for including a function in the verifying contract that returns a humanly readable description of the message to be signed,
+- reference implementation,
 - Security analysis of the proposed solution
 
 ## Motivation
