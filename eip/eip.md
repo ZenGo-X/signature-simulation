@@ -61,16 +61,23 @@ This function will have a well known name and signature, such that there is no n
     * @dev Returns the expected result of the offchain message.
    */
 
-    function evalEIP712Buffer(bytes memory encodedSignature) public view returns (string[] memory) {
+        function evalEIP712Buffer(Domain memory domain, string memory primaryType, bytes memory encodedSignature)
+        external
+        view
+        returns (string[] memory);{
       ...
 
    }
 ```
    
 (Some suggested alternatives for the function name, such as "explainSignedMessage". We want to get the community feedback on the proper name)
-### Function's input(s)
+### Function's inputs
    
-The input of the function (contents of ```encodedSignature```) is an ABI encoded message part of the EIP-712 full message. As it might be useful for this function to have access to other parts of message, such as ```primaryType```, ```domain```, we want to get the feedback of the community and specifically smart contract implementors on how they would like to receive it: e.g. as seperate parameters or even as the fully ABI encoded message that includes all EIP-712 elements (such as ```types```)
+The inputs of the function:
+* ```domain``` is the EIP-712's ```domain`` struct
+* ```primaryType```is the EIP-712's ```primaryType```
+* ```encodedSignature``` is an ABI encoded message part of the EIP-712 full message.
+We want to get the feedback of the community and specifically smart contract implementors on how they would like to receive this information: e.g. as seperate parameters as we show here, an EIP-712 compliant hash of these structs, or even as the fully ABI encoded message that includes all EIP-712 elements (including ```types```)
    
 ### Function's output(s)
 
