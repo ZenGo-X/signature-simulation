@@ -30,9 +30,16 @@ The example below shows the user exprience of victims that browse an actual phis
 
 As this example shows, the user interface for some popular wallet implementations is not coveying the actual meaning of signing such transactions.
 
-In this proposal we offer a secure and scalable method to bring true human readability to EIP-712 messages by leveraging their binded smart contracts. As a result after implementing this EIP, wallets can upgrade their user experience from current state (depicted on the left hand side) to a much clearer user experience.
+In this proposal we offer a secure and scalable method to bring true human readability to EIP-712 messages by leveraging their binded smart contracts.
+As a result, once implemented this EIP wallets can upgrade their user experience from current state:
    
-![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/Offline%20signature%20EIP%20before%20and%20after.png)
+![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask%20non-compliant.png) 
+   
+to a much clearer user experience:
+   
+![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/ZenGo%20EIP%20compliant%20.png)
+
+   
    
 
 
@@ -73,10 +80,10 @@ The strings SHOULD NOT be formatted (e.g. should not contain HTML code) and wall
 As it might be useful to provide a more structured output, we want to get the feedback of the community and specifically wallets' implementors on how they would like to receive it. One suggestion is that function would return structs that represent transfers and approvals to support a simulation like experience to the users. e.g. the ```evalEIP712Buffer``` function would return a strcut that represnts a transfer (contract, from, to, amount) and the wallet MAY display a resolved version of it to the end user. ("transfer 2 USDC to address 0x...")
    
    
-### Support for EIP-712 messageד that are not meant to be used on-chain
+### Support for EIP-712 messages that are not meant to be used on-chain
 
 Some web2 implementations are using a signed EIP-712 message as a method to identify the user. It would be helpful if the wallet can display a reassuring message that this message cannot be used on-chain. 
-We would like to get feedback from the community if this can be done safely, e.g. by omitting the ```chainId``` and/or ```verifyingContract``` from EIP-712 message, or putting non-exisiting values in them (e.g. ``verifyingContract``` = 0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC)
+We would like to get feedback from the community if this can be done safely, e.g. by omitting the ```chainId``` and/or ```verifyingContract``` from EIP-712 message, or putting non-exisiting values in them (e.g. ```verifyingContract``` = 0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC)
 
 
    
