@@ -67,14 +67,23 @@ The input of the function (contents of ```encodedSignature```) is an ABI encoded
 ### Function's output(s)
 
 The output of the the function is an array of strings. The wallet SHOULD display them to its end-users. The wallet MAY choose to augment the returned strings with additional data. (e.g. resolve contract addresses to their name)
+   
 The strings SHOULD NOT be formatted (e.g. should not contain HTML code) and wallets SHOULD treat this string as an untrusted input and handle its rendering as such.
-As it might be useful to provide a more structured output, we want to get the feedback of the community and specifically smart contract implementors on how they would like to receive it. One suggestion is that function would return structs that represent transfers and approvals to support a simulation like experience to the users. e.g. the ```evalEIP712Buffer``` function would return a strcut that represnts a transfer (contract, from, to, amount) and the wallet MAY display a resolved version of it to the end user. ("transfer 2 USDC to address 0x...")
+   
+As it might be useful to provide a more structured output, we want to get the feedback of the community and specifically wallets' implementors on how they would like to receive it. One suggestion is that function would return structs that represent transfers and approvals to support a simulation like experience to the users. e.g. the ```evalEIP712Buffer``` function would return a strcut that represnts a transfer (contract, from, to, amount) and the wallet MAY display a resolved version of it to the end user. ("transfer 2 USDC to address 0x...")
+   
+   
+### Support for EIP-712 message that are not meant to be used on-chain
+
+Some web2 implementations are using a signed EIP-712 message as a method to identify the user. It would be helpful if the wallet can display a reassuring message that this message cannot be used on-chain. 
+We would like to get feedback from the community if this can be done safely, e.g. by omitting the ```chainId``` and/or ```verifyingContract``` from EIP-712 message, or putting non-exisiting values in them (e.g. ``verifyingContract``` = 0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC)
+
 
    
 
 ## Rationale
 
-The proposed solution solves the readability issues. The incentives for keeping the descritption as accurate as possible are alligned, as the responsibility for the description is now owned by the contract, that:
+The proposed solution solves the readability issues. The incentives for keeping the EIP-712 message descritption as accurate as possible are alligned, as the responsibility for the description is now owned by the contract, that:
 
 - knows the message meaning exactly (and probably can reuse the code that handles this message when received on chain)
 - Natively incentivized to provide the best explanation to prevent a possible fraud
@@ -92,9 +101,9 @@ Currently, the best choice for users is to rely on some 3rd party solutions that
 - Not necessarily correct: the explanation is based on 3rd party interpretation of the original message author
 - Introduces an unnecessary dependency of a third party which may have some operational, security, and privacy implications.
 
-#### Domain binding
+#### Domain name binding
 
-Alternatively, wallets can bind domain to a signature to only accept EIP-712 message if it comes from a web2 domain that is included in the message, however this approach has the following disadvantages:
+Alternatively, wallets can bind domain name to a signature. i.e.  only accept EIP-712 message if it comes from a web2 domain that its ```name``` as defined by EIP-712 is included in ```eip712Domain```.  However this approach has the following disadvantages:
 
 - It breaks Web3’s composability, as now other dapps cannot interact with such messages
 - Does not protect against bad messages coming from the specified web2 domain, e.g. when web2 domain is hacked
@@ -129,7 +138,7 @@ Having said that, a rogue contract may try to abuse this functionality in order 
 The explanation is controlled by the relevant contract which is controlled by a legitimate party. The attacker must specify the relevant contract address, as otherwise it will not be accepted by it. Therefore, the attacker cannot create false explanations using this method.
 Please note that if the explanation was part of the message to sign it would have been under the control of the attacker and hence irrelevant for security purposes.
 
-Since the added functionality to the contract has the “view” modifier, it cannot change state and harm the existing functionalities of the contract
+Since the added functionality to the contract has the “view” modifier, it cannot change the on-chain state and harm the existing functionalities of the contract.
 
 ## Copyright
 
