@@ -74,7 +74,7 @@ This function will have a well known name and signature, such that there is no n
 ### Function's inputs
    
 The inputs of the function:
-* ```domain``` is the EIP-712's ```domain`` struct
+* ```domain``` is the EIP-712's ```domain``` struct
 * ```primaryType```is the EIP-712's ```primaryType```
 * ```encodedSignature``` is an ABI encoded message part of the EIP-712 full message.
 We want to get the feedback of the community and specifically smart contract implementors on how they would like to receive this information: e.g. as seperate parameters as we show here, an EIP-712 compliant hash of these structs, or even as the fully ABI encoded message that includes all EIP-712 elements (including ```types```)
