@@ -27,18 +27,18 @@ While [EIP-712](https://eips.ethereum.org/EIPS/eip-712) originally declared in i
 
 The example below shows the user exprience of victims that browse an actual phishing website. The phishing website requests the victims to sign a message that will put their NFT token for sale on OpenSea platform for a virtually zero price. 
 
-![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask.gif)
+![](../media/MiceyMask.gif)
 
 As this example shows, the user interface for some popular wallet implementations is not coveying the actual meaning of signing such transactions.
 
 In this proposal we offer a secure and scalable method to bring true human readability to EIP-712 messages by leveraging their binded smart contracts.
 As a result, once implemented this EIP wallets can upgrade their user experience from current state:
    
-![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/MiceyMask%20non-compliant.png) 
+![](../media/MiceyMask%20non-compliant.png) 
    
 to a much clearer user experience:
    
-![](https://github.com/ZenGo-X/signature-simulation/blob/main/media/ZenGo%20EIP%20compliant%20.png)
+![](../media/ZenGo%20EIP%20compliant%20.png)
 
    
    
@@ -132,9 +132,9 @@ Non-supporting wallets will not call this function and will default to showing w
 
 ## Reference Implementation
 
-A reference implementation can be found [here](https://github.com/ZenGo-X/signature-simulation/blob/main/implementation/src/MyToken/MyToken.sol).
+A reference implementation can be found [here](../implementation/src/MyToken/MyToken.sol).
 This toy example shows how an ERC20 contract supporting this EIP implements an EIP-712 support for "transferWithSig" functionality (a non-standard variation on Permit, as the point of this EIP is to allow readability to non-standard EIP-712 buffers).
-To illustrate the usability of this EIP to some real world use case, a helper function for the actual OpenSea's SeaPort EIP-712 is implemented too in [here](https://github.com/ZenGo-X/signature-simulation/blob/main/implementation/src/SeaPort/SeaPort712Parser.sol).
+To illustrate the usability of this EIP to some real world use case, a helper function for the actual OpenSea's SeaPort EIP-712 is implemented too in [here](../implementation/src/SeaPort/SeaPort712Parser.sol).
 
 ## Security Considerations
 
