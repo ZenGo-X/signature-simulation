@@ -5,11 +5,15 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {IEvalEIP712Buffer} from "../IEvalEIP712Buffer.sol";
+import {MyToken712ParserHelper} from "./MyToken712ParserHelper.sol";
 import {TransferParameters} from "./MyTokenStructs.sol";
 
-contract MyToken is ERC20, EIP712 {
+contract MyToken is ERC20, EIP712, IEvalEIP712Buffer {
     mapping(address => uint256) private _nonces;
     address public eip712TransalatorContract;
+
+    bytes32 private constant TYPE_HASH =
+        keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)");
 
     bytes32 private constant TRANSFER_TYPEHASH =
         keccak256("Transfer(address from,address to,uint256 amount,uint256 nonce,uint256 deadline)");
@@ -43,7 +47,27 @@ contract MyToken is ERC20, EIP712 {
         return _domainSeparatorV4();
     }
 
-    function evalEIP712Buffer(bytes memory encodedSignature) public view returns (string[] memory) {
-        return IEvalEIP712Buffer(eip712TransalatorContract).evalEIP712Buffer(encodedSignature);
+    function evalEIP712Buffer(
+        IEvalEIP712Buffer.Domain memory domain,
+        string memory primaryType,
+        bytes memory encodedData
+    ) public view override returns (string[] memory) {
+        require(
+            keccak256(abi.encodePacked(primaryType)) == keccak256(abi.encodePacked("Transfer")),
+            "MyToken: invalid primary type"
+        );
+        require(
+            _domainSeparatorV4()
+                == keccak256(
+                    abi.encode(
+                        TYPE_HASH,
+                        keccak256(bytes(domain.name)),
+                        keccak256(bytes(domain.version)),
+                        domain.chainId,
+                        domain.verifyingContract
+                    )
+                )
+        , "MyToken: Invalid domain");
+        return MyToken712ParserHelper(eip712TransalatorContract).parseSig(encodedData);
     }
 }

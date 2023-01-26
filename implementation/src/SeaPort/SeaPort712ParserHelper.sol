@@ -1,11 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-import "src/IEvalEIP712Buffer.sol";
 import {ItemType, OrderType, OfferItem, ConsiderationItem, OrderComponents} from "src/SeaPort/SeaPortStructs.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract SeaPort712Parser is IEvalEIP712Buffer {
+contract SeaPort712ParserHelper {
+    bytes32 private domainSeperator = keccak256(
+        abi.encodePacked("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)")
+    );
+
     string sigMessage =
         "This is a Seaport listing message, mostly used by OpenSea Dapp, be aware of the potential balance changes";
 
@@ -46,13 +49,8 @@ contract SeaPort712Parser is IEvalEIP712Buffer {
         return visitedAddresses.length + 1;
     }
 
-    function evalEIP712Buffer(bytes memory _signature)
-        public
-        view
-        override
-        returns (string[] memory sigTranslatedMessage)
-    {
-        OrderComponents memory order = abi.decode(_signature, (OrderComponents));
+    function parseSig(bytes memory signature) public view returns (string[] memory sigTranslatedMessage) {
+        OrderComponents memory order = abi.decode(signature, (OrderComponents));
         BalanceOut[] memory tempBalanceOut = new BalanceOut[](order.offer.length);
         BalanceIn[] memory tempBalanceIn = new BalanceIn[](order.consideration.length);
         address[] memory outTokenAddresses = new address[](order.offer.length);
@@ -87,7 +85,8 @@ contract SeaPort712Parser is IEvalEIP712Buffer {
 
         sigTranslatedMessage = new string[](outLength + inLength + 2);
         sigTranslatedMessage[0] = sigMessage;
-        sigTranslatedMessage[1] = string(abi.encodePacked("The signature is valid until ", Strings.toString(order.endTime)));
+        sigTranslatedMessage[1] =
+            string(abi.encodePacked("The signature is valid until ", Strings.toString(order.endTime)));
         for (uint256 i; i < inLength; i++) {
             sigTranslatedMessage[i + 2] = string(
                 abi.encodePacked(

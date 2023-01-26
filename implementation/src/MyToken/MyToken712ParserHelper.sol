@@ -5,7 +5,7 @@ import "src/IEvalEIP712Buffer.sol";
 import "src/MyToken/MyToken.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract MyToken712Parser is IEvalEIP712Buffer {
+contract MyToken712ParserHelper {
     string sigMessage =
         "This is MyToken transferWithSig message, by signing this message you are authorizing the transfer of MyToken from your account to the recipient account.";
 
@@ -17,13 +17,8 @@ contract MyToken712Parser is IEvalEIP712Buffer {
         uint256 deadline;
     }
 
-    function evalEIP712Buffer(bytes memory _buffer)
-        public
-        view
-        override
-        returns (string[] memory sigTranslatedMessage)
-    {
-        Transfer memory transfer = abi.decode(_buffer, (Transfer));
+    function parseSig(bytes memory signature) public view returns (string[] memory sigTranslatedMessage) {
+        Transfer memory transfer = abi.decode(signature, (Transfer));
         sigTranslatedMessage = new string[](3);
         sigTranslatedMessage[0] = sigMessage;
         sigTranslatedMessage[1] = Strings.toString(transfer.deadline);
