@@ -48,7 +48,7 @@ contract MyToken is ERC20, EIP712, IEvalEIP712Buffer {
     }
 
     function evalEIP712Buffer(
-        IEvalEIP712Buffer.Domain memory domain,
+        bytes32 domainSeparator,
         string memory primaryType,
         bytes memory encodedData
     ) public view override returns (string[] memory) {
@@ -56,18 +56,7 @@ contract MyToken is ERC20, EIP712, IEvalEIP712Buffer {
             keccak256(abi.encodePacked(primaryType)) == keccak256(abi.encodePacked("Transfer")),
             "MyToken: invalid primary type"
         );
-        require(
-            _domainSeparatorV4()
-                == keccak256(
-                    abi.encode(
-                        TYPE_HASH,
-                        keccak256(bytes(domain.name)),
-                        keccak256(bytes(domain.version)),
-                        domain.chainId,
-                        domain.verifyingContract
-                    )
-                )
-        , "MyToken: Invalid domain");
+        require(domainSeparator == _domainSeparatorV4(), "MyToken: Invalid domain");
         return MyToken712ParserHelper(eip712TransalatorContract).parseSig(encodedData);
     }
 }
