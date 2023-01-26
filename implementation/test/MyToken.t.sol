@@ -17,6 +17,9 @@ contract MyTokenTest is Test {
     address internal owner;
     address internal to;
 
+    bytes32 private constant TYPE_HASH =
+        keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)");
+
     function setUp() public {
         myToken712ParserHelper = new MyToken712ParserHelper();
         myToken = new MyToken(address(myToken712ParserHelper));
@@ -48,9 +51,7 @@ contract MyTokenTest is Test {
         //SigUtils.Transfer memory transferPayload = generateSigPayload();
         TransferParameters memory transferPayload = generateSigPayload();
         bytes memory encodedTransfer = abi.encode(transferPayload);
-        IEvalEIP712Buffer.Domain memory domain =
-            IEvalEIP712Buffer.Domain({name: "MyToken", version: "1", chainId: block.chainid, verifyingContract: address(myToken)});
-        string[] memory translatedSig = myToken.evalEIP712Buffer(domain, "Transfer", encodedTransfer);
+        string[] memory translatedSig = myToken.evalEIP712Buffer(myToken.DOMAIN_SEPARATOR(), "Transfer", encodedTransfer);
         for (uint256 i = 0; i < translatedSig.length; i++) {
             console.log(translatedSig[i]);
         }
