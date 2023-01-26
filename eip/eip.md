@@ -55,7 +55,7 @@ EIP-712 already formally binds an off-chain signature to a contract, with the "v
     * @dev Returns the expected result of the offchain message.
    */
 
-        function evalEIP712Buffer(Domain memory domain, string memory primaryType, bytes memory encodedSignature)
+        function evalEIP712Buffer(bytes32 domainHash, string memory primaryType, bytes memory signature)
         external
         view
         returns (string[] memory);{
@@ -76,10 +76,10 @@ This function will have a well known name and signature, such that there is no n
 ### Function's inputs
    
 The inputs of the function:
-* ```domain``` is the EIP-712's ```domain``` struct
-* ```primaryType```is the EIP-712's ```primaryType```
+* ```domainHash``` is the EIP-712's domainSeparator, a hashed ```eip712Domain``` struct.
+* ```primaryType```is the EIP-712's ```primaryType```.
 * ```encodedSignature``` is an ABI encoded message part of the EIP-712 full message.
-We want to get the feedback of the community and specifically smart contract implementors on how they would like to receive this information: e.g. as seperate parameters as we show here, an EIP-712 compliant hash of these structs, or even as the fully ABI encoded message that includes all EIP-712 elements (including ```types```)
+We want to get the feedback of the community and specifically smart contract implementors on how they would like to receive this information: e.g. as seperate parameters as we show here or the fully ABI encoded message that includes all EIP-712 elements (including ```types```).
    
 ### Function's output(s)
 
