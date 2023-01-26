@@ -18,13 +18,7 @@ contract SeaPort712ParserTest is Test, OrderGenerator {
     function testEvalEIP712BufferSeaport() public view {
         OrderComponents memory order = generateOrder();
         bytes memory encodedOrder = abi.encode(order);
-        IEvalEIP712Buffer.Domain memory domain = IEvalEIP712Buffer.Domain({
-            name: "Seaport",
-            version: "1.1",
-            chainId: block.chainid,
-            verifyingContract: address(seaPortMock)
-        });
-        string[] memory translatedSig = seaPortMock.evalEIP712Buffer(domain, "OrderComponents", encodedOrder);
+        string[] memory translatedSig = seaPortMock.evalEIP712Buffer(seaPortMock.DOMAIN_SEPARATOR(), "OrderComponents", encodedOrder);
         for (uint256 i = 0; i < translatedSig.length; i++) {
             console.log(translatedSig[i]);
         }
