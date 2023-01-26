@@ -50,13 +50,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 EIP-712 already formally binds an off-chain signature to a contract, with the "verifyingContract" parameter. We suggest adding a “view” function ("stateMutability":"view") to such contracts, that returns a human readable description of the meaning of this specific off-chain buffer.
 
-**Every EIP-XXXX (this EIP) compliant contract MUST implement this function.** In case the EIP-712 message is not bounded to a contract, the wallet cannot call this function as the contract address is unkown and SHOULD default to its current display.
-
-Using this function, wallets can submit the proposed off-chain signature to the contract and present the results to the user, allowing them to enjoy an “on-chain simulation equivalent” experience to their off-chain message.
-
-This function will have a well known name and signature, such that there is no need for updates in the EIP-712 structure.
-
-```
+   ```
    /**
     * @dev Returns the expected result of the offchain message.
    */
@@ -69,6 +63,14 @@ This function will have a well known name and signature, such that there is no n
 
    }
 ```
+
+**Every compliant contract MUST implement this function.** 
+
+Using this function, wallets can submit the proposed off-chain signature to the contract and present the results to the user, allowing them to enjoy an “on-chain simulation equivalent” experience to their off-chain message.
+
+This function will have a well known name and signature, such that there is no need for updates in the EIP-712 structure.
+
+
    
 (Some suggested alternatives for the function name, such as "explainSignedMessage". We want to get the community feedback on the proper name)
 ### Function's inputs
@@ -89,6 +91,8 @@ As it might be useful to provide a more structured output, we want to get the fe
    
    
 ### Support for EIP-712 messages that are not meant to be used on-chain
+
+In case the EIP-712 message is not bounded to a contract, the wallet cannot call this function as the contract address is unkown and SHOULD default to its current display.
 
 Some web2 implementations are using a signed EIP-712 message as a method to identify the user. It would be helpful if the wallet can display a reassuring message that this message cannot be used on-chain. 
 We would like to get feedback from the community if this can be done safely, e.g. by omitting the ```chainId``` and/or ```verifyingContract``` from EIP-712 message, or putting non-exisiting values in them (e.g. ```verifyingContract``` = 0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC)
